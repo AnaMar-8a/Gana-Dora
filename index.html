@@ -165,7 +165,7 @@
         <!-- PIE DE PÁGINA (FOOTER)                                              -->
         <!-- Objetivo: Instrucciones de voto claras y enlaces a redes sociales. -->
         <!-- =================================================================== -->
-        <footer class="bg-gray-900 py-16 text-center text-white">
+        <footer class="bg-gray-900 pt-16 text-center text-white">
             <h3 class="text-2xl font-bold uppercase">Este 26 de Octubre, VOTA ASÍ:</h3>
             <!-- Tarjeta visual con instrucciones de voto simplificadas y más grande -->
             <div class="max-w-xl mx-auto mt-8 bg-white text-gray-900 rounded-2xl shadow-2xl p-8">
@@ -200,6 +200,16 @@
             </div>
 
             <p class="mt-8 text-lg font-semibold text-[var(--campaign-fuchsia)]">#PonteLa20PorLasMujeres #DoraALaCámara</p>
+            
+            <!-- Franja de autoría con borde superior teal -->
+            <div class="mt-16 border-t-2 border-[var(--campaign-accent)] pt-8 pb-8">
+                <p class="text-sm text-gray-400">
+                    Diseño y Programación por 
+                    <a href="https://www.linkedin.com/in/8aanamaria/" target="_blank" class="font-semibold text-gray-300 hover:text-[var(--campaign-accent)] transition-colors">
+                        AnaMar-8a
+                    </a>
+                </p>
+            </div>
         </footer>
     </main>
 
@@ -219,7 +229,11 @@
             <button id="close-donation-modal-btn" class="absolute top-4 right-4 text-2xl text-gray-400 hover:text-white">&times;</button>
             <h3 class="text-2xl font-bold uppercase mb-6">¡Gracias por tu apoyo!</h3>
             <div class="space-y-4 text-lg text-left bg-white/10 p-6 rounded-lg">
-                <p><strong>📲 NEQUI:</strong> 3004379695</p>
+                <p>
+                    <a href="https://clientes.nequi.com.co/recargas" target="_blank" class="hover:text-[var(--campaign-accent)] transition-colors">
+                        <strong>📲 NEQUI:</strong> 3004379695
+                    </a>
+                </p>
                 <p><strong>🏦 CTA AHORROS BANCOLOMBIA:</strong> 553-551793-53</p>
             </div>
             <p class="mt-6 text-gray-300">Tu aporte es el motor de este cambio.</p>
@@ -260,7 +274,7 @@
                 if (distance < 0) {
                     clearInterval(countdownInterval);
                     const urgencySection = document.getElementById('urgencia');
-                    if(urgencySection) {
+                    if(urgenciaSection) {
                         urgencySection.innerHTML = '<div class="container mx-auto px-6 py-10"><h3 class="text-5xl font-extrabold uppercase text-[var(--campaign-light)] drop-shadow">¡ES HOY, A VOTAR!</h3></div>';
                     }
                     return;
