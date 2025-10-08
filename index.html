@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dora Saldarriaga a la Cámara | El Poder Para el Pueblo</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Poppins (moderna y versátil) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* Estilos personalizados y configuración de Tailwind */
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Colores personalizados de la campaña para usar con Tailwind */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'campaign-purple': '#5C2D91',
+                        'campaign-fuchsia': '#C1006A', /* AJUSTE: Tono de fucsia optimizado para mayor contraste */
+                        'campaign-dark': '#2c004e',
+                    }
+                }
+            }
+        }
+        
+        /* Animación para la aparición de elementos */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in-element {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        /* Estilo para el Hero con la imagen de Dora a la derecha en pantallas grandes */
+        .hero-bg {
+            background-image: linear-gradient(to right, #2c004e, #5C2D91);
+        }
+
+        @media (min-width: 1024px) {
+            .hero-bg {
+                background-image: 
+                    linear-gradient(to right, #2c004e 40%, rgba(92, 45, 145, 0.8)), 
+                    url('https://i.imgur.com/8Q9Z5gI.jpg'); /* Usando una URL de la imagen que subiste por conveniencia */
+                background-size: cover;
+                background-position: center center;
+            }
+        }
+
+    </style>
+</head>
+<body class="bg-campaign-dark text-white">
+
+    <!-- ======================== -->
+    <!-- HERO / ENCABEZADO MODERNO -->
+    <!-- ======================== -->
+    <header class="hero-bg min-h-screen flex items-center">
+        <div class="container mx-auto px-6 lg:px-8 py-20 lg:py-0">
+            <div class="lg:w-1/2 text-center lg:text-left">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-tight fade-in-element">
+                    ¡Este 26 de Octubre, el poder del pueblo llega al congreso!
+                </h1>
+                <h2 class="mt-6 text-lg md:text-xl font-light max-w-2xl mx-auto lg:mx-0 fade-in-element" style="animation-delay: 0.2s;">
+                    Soy Dora Saldarriaga y junto a ti, vamos a llevar la voz de las mujeres y de la gente a la Cámara por Antioquia.
+                </h2>
+                <!-- Botón de acción directo en el header para maximizar conversión -->
+                <a href="#votos-seguros" class="mt-10 inline-block bg-campaign-fuchsia text-white font-bold text-xl uppercase px-12 py-4 rounded-full shadow-lg hover:bg-white hover:text-campaign-fuchsia transition-all duration-300 transform hover:scale-105 fade-in-element" style="animation-delay: 0.4s;">
+                    ¡Soy Voto Seguro!
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ======================== -->
+        <!-- CONTADOR CON NUEVO DISEÑO -->
+        <!-- ======================== -->
+        <section id="urgencia" class="bg-campaign-purple py-20">
+            <div class="container mx-auto px-6 text-center">
+                <p class="text-xl md:text-2xl font-semibold">El cambio es ahora y cada minuto cuenta. El futuro de Antioquia está en nuestras manos.</p>
+                <h3 class="text-4xl md:text-5xl font-black uppercase my-6">¡Quedan!</h3>
+                
+                <!-- El contador ahora tiene un diseño de "tarjetas" -->
+                <div class="flex justify-center items-center gap-2 sm:gap-4 md:gap-8 mt-8">
+                    <div class="bg-white/10 p-4 md:p-6 rounded-2xl w-20 sm:w-24 md:w-36">
+                        <span id="days" class="text-4xl sm:text-5xl md:text-7xl font-black">00</span>
+                        <p class="mt-2 text-xs sm:text-sm md:text-base uppercase tracking-widest">Días</p>
+                    </div>
+                    <div class="bg-white/10 p-4 md:p-6 rounded-2xl w-20 sm:w-24 md:w-36">
+                        <span id="hours" class="text-4xl sm:text-5xl md:text-7xl font-black">00</span>
+                        <p class="mt-2 text-xs sm:text-sm md:text-base uppercase tracking-widest">Horas</p>
+                    </div>
+                    <div class="bg-white/10 p-4 md:p-6 rounded-2xl w-20 sm:w-24 md:w-36">
+                        <span id="minutes" class="text-4xl sm:text-5xl md:text-7xl font-black">00</span>
+                        <p class="mt-2 text-xs sm:text-sm md:text-base uppercase tracking-widest">Minutos</p>
+                    </div>
+                    <div class="bg-white/10 p-4 md:p-6 rounded-2xl w-20 sm:w-24 md:w-36">
+                        <span id="seconds" class="text-4xl sm:text-5xl md:text-7xl font-black">00</span>
+                        <p class="mt-2 text-xs sm:text-sm md:text-base uppercase tracking-widest">Segundos</p>
+                    </div>
+                </div>
+                
+                <p class="mt-10 text-xl md:text-3xl font-bold uppercase tracking-wider">Para ponernos la 20 por las mujeres y hacer historia.</p>
+            </div>
+        </section>
+
+        <!-- ======================== -->
+        <!-- VOTOS SEGUROS - DISEÑO LIMPIO -->
+        <!-- ======================== -->
+        <section id="votos-seguros" class="py-20 bg-gray-100 text-gray-800">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-5xl font-black uppercase text-campaign-purple">Tu Voto es Nuestra Fuerza</h2>
+                <p class="text-lg mt-4 max-w-3xl mx-auto">Para ganar este 26 de octubre, necesito saber que cuento contigo. Registrar tu voto nos permite organizar la campaña, defender cada tarjetón y asegurar que nuestra victoria sea contundente. ¡Suma tu nombre a la lista del cambio!</p>
+                <a href="#" class="mt-8 inline-block bg-campaign-purple text-white font-bold text-xl uppercase px-12 py-4 rounded-full shadow-lg hover:bg-campaign-fuchsia transition-all duration-300 transform hover:scale-105">
+                    <!--! CAMBIAR AQUÍ: Pon el link a tu formulario de Votos -->
+                    ¡Sí, Dora, cuenta con mi voto!
+                </a>
+            </div>
+        </section>
+
+        <!-- ======================== -->
+        <!-- DONACIONES - DISEÑO DE IMPACTO -->
+        <!-- ======================== -->
+        <section id="donaciones" class="py-20 bg-campaign-dark">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 class="text-4xl md:text-5xl font-black uppercase text-white">Esta Campaña la Financia el Pueblo</h2>
+                <p class="text-lg mt-4 max-w-3xl mx-auto">Nuestra fuerza es la gente. Cada aporte se convierte en un volante, en transporte para un voluntario, en la voz que llega a más rincones de Antioquia. Tu donación es una inversión directa para que el poder regrese a las manos del pueblo.</p>
+                
+                <!-- Barra de Progreso de Donaciones -->
+                <div class="max-w-3xl mx-auto mt-12">
+                    <div class="flex justify-between items-center mb-2 text-lg font-bold">
+                        <span class="text-white">Recaudado: <span id="current-donations">$0</span></span>
+                        <span class="text-gray-400">Meta: $50,000,000</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-8 shadow-inner">
+                        <div id="donations-bar" class="bg-campaign-fuchsia h-8 rounded-full text-center text-white font-bold flex items-center justify-center transition-all duration-1000 ease-out" style="width: 0%;">
+                            <span id="donations-percentage" class="opacity-0 transition-opacity duration-500">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#" class="mt-12 inline-block bg-white text-campaign-purple font-bold text-xl uppercase px-12 py-4 rounded-full shadow-lg hover:bg-campaign-fuchsia hover:text-white transition-all duration-300 transform hover:scale-105">
+                    <!--! CAMBIAR AQUÍ: Pon el link a tu plataforma de donación (Vaki, etc.) -->
+                    ¡Aporto al cambio ahora!
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ======================== -->
+    <!-- FOOTER CON TARJETA DE VOTO -->
+    <!-- ======================== -->
+    <footer class="bg-gray-900 py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold uppercase">Este 26 de Octubre, VOTA ASÍ:</h3>
+            
+            <!-- Tarjeta de voto modernizada -->
+            <div class="max-w-md mx-auto mt-8 bg-white text-gray-800 rounded-2xl shadow-2xl p-6 transform hover:scale-105 transition-transform duration-300">
+                <p class="font-semibold text-lg">Cámara Antioquia</p>
+                <p class="text-gray-600 mt-2">Sigue estos dos pasos:</p>
+                <div class="mt-4 text-left space-y-3">
+                    <div class="flex items-center gap-4">
+                        <span class="flex-shrink-0 bg-campaign-purple text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg">1</span>
+                        <p class="font-semibold">Marca el logo del <span class="text-campaign-fuchsia">PACTO HISTÓRICO</span>.</p>
+                    </div>
+                     <div class="flex items-center gap-4">
+                        <span class="flex-shrink-0 bg-campaign-purple text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg">2</span>
+                        <p class="font-semibold">Escribe el número <span class="text-campaign-fuchsia text-2xl">20</span>.</p>
+                    </div>
+                </div>
+                <img src="https://i.imgur.com/u7qg0A4.png" alt="Logo Pacto Histórico con el número 20" class="mx-auto mt-6 h-16"> <!-- Usando una URL de la imagen del logo por conveniencia -->
+            </div>
+            
+            <div class="mt-12">
+                <div class="flex justify-center items-center space-x-6">
+                    <!--! CAMBIAR AQUÍ: Pon los links a tus redes sociales -->
+                    <a href="#" target="_blank" aria-label="Facebook" class="text-4xl text-gray-400 hover:text-campaign-fuchsia transition-colors duration-300"><i class="fab fa-facebook-square"></i></a>
+                    <a href="#" target="_blank" aria-label="Instagram" class="text-4xl text-gray-400 hover:text-campaign-fuchsia transition-colors duration-300"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" aria-label="Twitter" class="text-4xl text-gray-400 hover:text-campaign-fuchsia transition-colors duration-300"><i class="fab fa-twitter-square"></i></a>
+                    <a href="#" target="_blank" aria-label="WhatsApp" class="text-4xl text-gray-400 hover:text-campaign-fuchsia transition-colors duration-300"><i class="fab fa-whatsapp-square"></i></a>
+                </div>
+            </div>
+            
+            <p class="mt-8 text-lg font-bold text-campaign-fuchsia tracking-widest">#PonteLa20PorLasMujeres #DoraALaCámara</p> <!-- AJUSTE: Color cambiado para mayor visibilidad -->
+        </div>
+    </footer>
+
+    <!-- ======================== -->
+    <!-- SCRIPT PARA EL CONTADOR -->
+    <!-- ======================== -->
+    <script>
+        const countdown = () => {
+            const targetDate = new Date('October 26, 2025 08:00:00').getTime(); // 8 AM para el inicio de la votación
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById('urgencia').innerHTML = '<div class="container mx-auto px-6 text-center"><h2 class="text-4xl md:text-6xl font-black uppercase text-white">¡LLEGÓ EL DÍA DE HACER HISTORIA!</h2></div>';
+                clearInterval(interval);
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        };
+
+        // Donations Bar Animation
+        const animateDonations = () => {
+            const donationsBar = document.getElementById('donations-bar');
+            const donationsPercentageText = document.getElementById('donations-percentage');
+            const currentDonationsText = document.getElementById('current-donations');
+            
+            // --- ¡CAMBIAR AQUÍ! ---
+            // Estos son los valores para la barra de progreso. 
+            // Actualízalos para que la barra refleje el estado real de las donaciones.
+            const meta = 50000000; // 50 millones
+            const recaudado = 15700000; // 15.7 millones
+            // --- Fin de la sección para cambiar ---
+
+            const targetPercentage = Math.round((recaudado / meta) * 100);
+
+            // Formatear los números como moneda colombiana
+            currentDonationsText.innerText = `$${recaudado.toLocaleString('es-CO')}`;
+            
+            // Animar la barra
+            setTimeout(() => {
+                donationsBar.style.width = `${targetPercentage}%`;
+                donationsPercentageText.innerText = `${targetPercentage}%`;
+                // Hacer visible el porcentaje después de que la barra comience a moverse
+                setTimeout(() => {
+                    donationsPercentageText.classList.remove('opacity-0');
+                }, 500);
+            }, 500); // Pequeño retraso para que la animación sea visible al cargar
+        };
+        
+        const interval = setInterval(countdown, 1000); // Actualiza cada segundo
+        
+        // Ejecutar funciones al cargar la página
+        countdown();
+        animateDonations();
+    </script>
+
+</body>
+</html>
+
