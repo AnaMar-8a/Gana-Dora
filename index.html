@@ -56,6 +56,17 @@
             from { opacity: 0; transform: scale(0.9); }
             to { opacity: 1; transform: scale(1); }
         }
+        
+        /* Animación para el gradiente de la barra de donaciones */
+        @keyframes animate-gradient {
+            0% { background-position: -100% 0; }
+            100% { background-position: 100% 0; }
+        }
+        .animated-gradient {
+            background: linear-gradient(to right, var(--campaign-fuchsia), #ff4da6, var(--campaign-fuchsia));
+            background-size: 200% 100%;
+            animation: animate-gradient 2s linear infinite;
+        }
 
         /* Clases de utilidad para aplicar las animaciones */
         .fade-in { animation: fadeInUp 0.8s ease forwards; }
@@ -63,6 +74,21 @@
     </style>
 </head>
 <body class="bg-[var(--campaign-dark)] text-white">
+
+    <!-- =================================================================== -->
+    <!-- POP-UP DE BIENVENIDA (SPLASH SCREEN)                                -->
+    <!-- Objetivo: Crear un impacto visual inmediato al cargar la página.    -->
+    <!-- =================================================================== -->
+    <div id="splash-screen" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm cursor-pointer">
+        <div class="relative w-full h-full bg-cover bg-center" style="background-image: url('images/dora-bg.jpg');">
+            <div class="absolute inset-0 bg-gradient-to-t from-[var(--campaign-dark)] to-transparent flex flex-col items-center justify-end p-8 text-center">
+                <h2 class="text-5xl md:text-7xl font-black text-white drop-shadow-lg fade-in" style="animation-delay: 0.2s;">EL PODER PARA EL PUEBLO</h2>
+                <p class="mt-4 text-xl text-gray-200 fade-in" style="animation-delay: 0.4s;">Haz clic para continuar</p>
+            </div>
+            <button id="close-splash" class="absolute top-6 right-6 text-white text-4xl font-bold">&times;</button>
+        </div>
+    </div>
+
 
     <!-- =================================================================== -->
     <!-- ENCABEZADO PRINCIPAL (HERO SECTION)                                 -->
@@ -160,7 +186,7 @@
                         <span id="donation-goal-text">Meta: $6,000,000</span>
                     </div>
                     <div class="w-full bg-white/10 h-8 rounded-full overflow-hidden shadow-inner">
-                        <div id="donations-bar" class="bg-[var(--campaign-fuchsia)] h-8 flex items-center justify-center text-white text-sm font-bold transition-all duration-1000 ease-out" style="width:0%;">
+                        <div id="donations-bar" class="h-8 flex items-center justify-center text-white text-sm font-bold transition-all duration-1000 ease-out animated-gradient" style="width:0%;">
                             <span id="donations-percentage" class="opacity-0 transition-opacity duration-700">0%</span>
                         </div>
                     </div>
@@ -276,8 +302,6 @@
     <!-- Objetivo: Darle interactividad a la página (contador, modal, etc.)  -->
     <!-- =================================================================== -->
     <script>
-        // Espera a que todo el contenido HTML de la página se haya cargado antes de ejecutar el script.
-        // Es una buena práctica para evitar errores si el script intenta manipular elementos que aún no existen.
         document.addEventListener('DOMContentLoaded', () => {
 
             /*****************************************************************************************
@@ -292,7 +316,7 @@
 
                 // -------- DONACIONES --------
                 metaDonaciones: 6000000, // La meta final de dinero a recaudar.
-                recaudado: 77291,       // <-- CAMBIA ESTE NÚMERO con el total de dinero que has recaudado hoy.
+                recaudado: 350000,       // <-- CAMBIA ESTE NÚMERO con el total de dinero que has recaudado hoy.
 
                 // -------- FECHA DE ELECCIONES --------
                 fechaElecciones: 'October 26, 2025 08:00:00'
@@ -300,7 +324,6 @@
 
 
             // --- LÓGICA DEL CONTADOR REGRESIVO ---
-            // Esta función calcula y muestra el tiempo restante hasta el día de las elecciones.
             const countdown = () => {
                 const targetDate = new Date(campaignConfig.fechaElecciones).getTime();
                 const now = new Date().getTime();
@@ -315,13 +338,11 @@
                     return;
                 }
 
-                // Cálculos para obtener días, horas, minutos y segundos.
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                // Actualiza los elementos en el HTML. El padStart(2, '0') asegura que siempre haya dos dígitos (ej. 09).
                 document.getElementById('days').innerText = String(days).padStart(2, '0');
                 document.getElementById('hours').innerText = String(hours).padStart(2, '0');
                 document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
@@ -329,7 +350,6 @@
             };
 
             // --- LÓGICA DE LA BARRA DE PROGRESO DE DONACIONES ---
-            // Anima la barra de progreso y el contador de dinero.
             const animateDonations = () => {
                 const percentage = Math.round((campaignConfig.recaudado / campaignConfig.metaDonaciones) * 100);
                 document.getElementById('donation-goal-text').innerText = `Meta: $${campaignConfig.metaDonaciones.toLocaleString('es-CO')}`;
@@ -338,7 +358,6 @@
                 const text = document.getElementById('donations-percentage');
                 const currentDonationsElement = document.getElementById('current-donations');
 
-                // 1. Animar el ancho de la barra.
                 setTimeout(() => {
                     if(bar) bar.style.width = `${percentage}%`;
                     if(text) {
@@ -347,7 +366,6 @@
                     }
                 }, 400);
 
-                // 2. Animar el conteo del número de donaciones.
                 let currentCount = 0;
                 const duration = 1500;
                 const timer = setInterval(() => {
@@ -361,12 +379,11 @@
             };
 
             // --- LÓGICA DEL MAPA DE CALOR DE VOTOS ---
-            // Genera y anima el mosaico de votos.
             const animateVoteCounter = () => {
                 const voteCountElement = document.getElementById('vote-count');
                 const gridContainer = document.getElementById('vote-grid');
                 const voteGoalText = document.getElementById('vote-goal-text');
-                const totalSquares = 200; // Número de cuadritos en el mosaico (20x10)
+                const totalSquares = 200; 
 
                 voteGoalText.innerText = campaignConfig.metaVotos.toLocaleString('es-CO');
 
@@ -411,8 +428,7 @@
                 }, 10);
             };
 
-            // --- LÓGICA GENERAL DE MODALES (POPUPS) ---
-            // Función reutilizable para abrir y cerrar cualquier modal.
+            // --- LÓGICA GENERAL DE MODALES Y POP-UPS ---
             const setupModal = (openBtnId, closeBtnId, modalId) => {
                 const openBtn = document.getElementById(openBtnId);
                 const closeBtn = document.getElementById(closeBtnId);
@@ -426,6 +442,25 @@
                     });
                 }
             };
+            
+            // --- LÓGICA DEL POP-UP DE BIENVENIDA ---
+            const splashScreen = document.getElementById('splash-screen');
+            if (splashScreen) {
+                // Muestra el pop-up al cargar la página
+                splashScreen.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Evita el scroll del fondo
+                
+                // Oculta el pop-up al hacer clic en cualquier parte
+                splashScreen.addEventListener('click', () => {
+                    splashScreen.style.opacity = '0';
+                    splashScreen.style.transition = 'opacity 0.5s ease';
+                    document.body.style.overflow = 'auto';
+                    setTimeout(() => {
+                        splashScreen.classList.add('hidden');
+                    }, 500); // Espera a que la transición termine
+                });
+            }
+
 
             // --- INICIALIZACIÓN DE TODAS LAS FUNCIONALIDADES ---
             setupModal('open-modal-btn', 'close-donation-modal-btn', 'donation-modal');
