@@ -211,7 +211,7 @@
     <!-- Modal (Pop-up) de Donaciones -->
     <div id="donation-modal" class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 hidden">
         <div class="bg-[var(--campaign-dark)] border-2 border-[var(--campaign-fuchsia)] text-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center relative modal-content">
-            <button id="close-modal-btn" class="absolute top-4 right-4 text-2xl text-gray-400 hover:text-white">&times;</button>
+            <button id="close-donation-modal-btn" class="absolute top-4 right-4 text-2xl text-gray-400 hover:text-white">&times;</button>
             <h3 class="text-2xl font-bold uppercase mb-6">¡Gracias por tu apoyo!</h3>
             <div class="space-y-4 text-lg text-left bg-white/10 p-6 rounded-lg">
                 <p><strong>📲 NEQUI:</strong> 3004379695</p>
@@ -221,21 +221,29 @@
         </div>
     </div>
     
-    <!-- Modal (Pop-up) de Cómo Votar -->
+    <!-- Modal (Pop-up) de Cómo Votar con funcionalidad mejorada -->
     <div id="voting-modal" class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 hidden">
         <div class="bg-[var(--campaign-dark)] border-2 border-[var(--campaign-accent)] text-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center relative modal-content">
             <button id="close-voting-modal-btn" class="absolute top-4 right-4 text-2xl text-gray-400 hover:text-white">&times;</button>
-            <h3 class="text-2xl font-bold uppercase mb-4">¡Así Votamos!</h3>
-            <!-- Imagen "Cómo Votar" en grande -->
+            <h3 class="text-2xl font-bold uppercase mb-4">¡Comparte para Ganar!</h3>
             <img src="images/como-votar.png" alt="Logo Pacto Histórico con el número 20" class="mx-auto w-full max-w-xs rounded-lg">
-            <p class="mt-4 text-gray-300">¡Ayúdanos a difundir! Comparte esta imagen con tus contactos.</p>
-            <!-- Call to Action: Compartir en WhatsApp -->
-            <a href="https://api.whatsapp.com/send?text=¡Este%2026%20de%20octubre%2C%20apoya%20a%20Dora%20Saldarriaga!%20Así%20se%20vota%3A%20Marcas%20Pacto%20Histórico%20y%20escribes%20el%2020.%20%23PonteLa20PorLasMujeres" target="_blank" class="mt-6 inline-block bg-green-500 text-white font-bold text-lg uppercase px-10 py-3 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105">
-                <i class="fab fa-whatsapp mr-2"></i>
-                Compartir en WhatsApp
-            </a>
+            
+            <div class="mt-6 space-y-4">
+                <!-- Paso 1: Descargar Imagen -->
+                <a href="images/como-votar.png" download="como-votar-dora-saldarriaga.png" class="w-full inline-block bg-white text-[var(--campaign-purple)] font-bold text-lg uppercase px-10 py-3 rounded-full shadow-lg hover:bg-gray-200 transition-all duration-300">
+                    <i class="fas fa-download mr-2"></i>
+                    1. Descargar Imagen
+                </a>
+                <!-- Paso 2: Copiar Mensaje y Abrir WhatsApp -->
+                <button id="copy-and-share-btn" class="w-full inline-block bg-green-500 text-white font-bold text-lg uppercase px-10 py-3 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300">
+                    <i class="fab fa-whatsapp mr-2"></i>
+                    2. Copiar Mensaje y Abrir WhatsApp
+                </button>
+            </div>
         </div>
     </div>
+    <!-- Elemento oculto para copiar el texto -->
+    <textarea id="whatsapp-message" class="hidden">¡Este 26 de octubre, apoya a Dora Saldarriaga! Así se vota: Marcas Pacto Histórico y escribes el 20. #PonteLa20PorLasMujeres</textarea>
 
 
     <!-- =================================================================== -->
@@ -243,16 +251,14 @@
     <!-- Objetivo: Darle interactividad a la página (contador, modal, etc.)  -->
     <!-- =================================================================== -->
     <script>
-        // Se ejecuta cuando todo el contenido HTML de la página se ha cargado.
         document.addEventListener('DOMContentLoaded', () => {
 
             // --- LÓGICA DEL CONTADOR REGRESIVO ---
             const countdown = () => {
-                const targetDate = new Date('October 26, 2025 08:00:00').getTime(); // Fecha de las elecciones
+                const targetDate = new Date('October 26, 2025 08:00:00').getTime();
                 const now = new Date().getTime();
                 const distance = targetDate - now;
 
-                // Si la fecha ya pasó, detiene el contador y muestra un mensaje.
                 if (distance < 0) {
                     clearInterval(countdownInterval);
                     const urgencySection = document.getElementById('urgencia');
@@ -262,13 +268,11 @@
                     return;
                 }
 
-                // Cálculos para obtener días, horas, minutos y segundos.
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                // Actualiza los elementos en el HTML con los nuevos valores.
                 document.getElementById('days').innerText = String(days).padStart(2, '0');
                 document.getElementById('hours').innerText = String(hours).padStart(2, '0');
                 document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
@@ -277,92 +281,67 @@
 
             // --- LÓGICA DE LA BARRA DE PROGRESO DE DONACIONES ---
             const animateDonations = () => {
-                // --- ¡IMPORTANTE! Actualiza estos valores para reflejar el estado real ---
                 const meta = 6000000;
                 const recaudado = 350000;
-                // --- Fin de la sección para cambiar ---
-
-                // Calcula el porcentaje recaudado.
                 const percentage = Math.round((recaudado / meta) * 100);
-
-                // Obtiene los elementos del DOM que se van a manipular.
                 const bar = document.getElementById('donations-bar');
                 const text = document.getElementById('donations-percentage');
                 const current = document.getElementById('current-donations');
-
-                // Formatea el número recaudado con separadores de miles.
                 current.innerText = `$${recaudado.toLocaleString('es-CO')}`;
 
-                // Aplica la animación a la barra y muestra el porcentaje.
                 setTimeout(() => {
                     if(bar) bar.style.width = `${percentage}%`;
                     if(text) {
                         text.innerText = `${percentage}%`;
-                        // Muestra el texto del porcentaje solo si es mayor al 10% para no sobrecargar la barra.
-                        if (percentage > 10) {
-                            text.classList.remove('opacity-0');
-                        }
+                        if (percentage > 10) text.classList.remove('opacity-0');
                     }
                 }, 400);
             };
 
-            // --- LÓGICA DEL MODAL DE DONACIONES ---
-            const openModalBtn = document.getElementById('open-modal-btn');
-            const closeModalBtn = document.getElementById('close-modal-btn');
-            const donationModal = document.getElementById('donation-modal');
+            // --- LÓGICA GENERAL DE MODALES ---
+            const setupModal = (openBtnId, closeBtnId, modalId) => {
+                const openBtn = document.getElementById(openBtnId);
+                const closeBtn = document.getElementById(closeBtnId);
+                const modal = document.getElementById(modalId);
 
-            if(openModalBtn && donationModal) {
-                openModalBtn.addEventListener('click', () => {
-                    donationModal.classList.remove('hidden');
+                if (openBtn && modal) {
+                    openBtn.addEventListener('click', () => modal.classList.remove('hidden'));
+                }
+                if (closeBtn && modal) {
+                    closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+                }
+                if (modal) {
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) modal.classList.add('hidden');
+                    });
+                }
+            };
+
+            // --- LÓGICA PARA COPIAR Y COMPARTIR EN WHATSAPP ---
+            const copyAndShareBtn = document.getElementById('copy-and-share-btn');
+            if (copyAndShareBtn) {
+                copyAndShareBtn.addEventListener('click', () => {
+                    const messageTextarea = document.getElementById('whatsapp-message');
+                    messageTextarea.select();
+                    // document.execCommand('copy') es usado para máxima compatibilidad
+                    document.execCommand('copy');
+
+                    // Feedback visual para el usuario
+                    copyAndShareBtn.innerHTML = '<i class="fas fa-check mr-2"></i> ¡Texto Copiado!';
+                    setTimeout(() => {
+                         copyAndShareBtn.innerHTML = '<i class="fab fa-whatsapp mr-2"></i> 2. Copiar Mensaje y Abrir WhatsApp';
+                    }, 2000);
+
+                    // Abrir WhatsApp
+                    window.open('https://api.whatsapp.com/send?text=', '_blank');
                 });
             }
 
-            if(closeModalBtn && donationModal) {
-                closeModalBtn.addEventListener('click', () => {
-                    donationModal.classList.add('hidden');
-                });
-            }
+            // --- INICIALIZACIÓN DE TODAS LAS FUNCIONALIDADES ---
+            setupModal('open-modal-btn', 'close-donation-modal-btn', 'donation-modal');
+            setupModal('open-voting-modal-btn', 'close-voting-modal-btn', 'voting-modal');
             
-            if(donationModal) {
-                // Cierra el modal si el usuario hace clic fuera del contenido.
-                donationModal.addEventListener('click', (e) => {
-                    if (e.target === donationModal) {
-                        donationModal.classList.add('hidden');
-                    }
-                });
-            }
-
-            // --- LÓGICA DEL MODAL DE CÓMO VOTAR ---
-            const openVotingModalBtn = document.getElementById('open-voting-modal-btn');
-            const closeVotingModalBtn = document.getElementById('close-voting-modal-btn');
-            const votingModal = document.getElementById('voting-modal');
-
-            if(openVotingModalBtn && votingModal) {
-                openVotingModalBtn.addEventListener('click', () => {
-                    votingModal.classList.remove('hidden');
-                });
-            }
-
-            if(closeVotingModalBtn && votingModal) {
-                closeVotingModalBtn.addEventListener('click', () => {
-                    votingModal.classList.add('hidden');
-                });
-            }
-            
-            if(votingModal) {
-                // Cierra el modal si el usuario hace clic fuera del contenido.
-                votingModal.addEventListener('click', (e) => {
-                    if (e.target === votingModal) {
-                        votingModal.classList.add('hidden');
-                    }
-                });
-            }
-
-            // --- EJECUCIÓN INICIAL DE FUNCIONES ---
-            // Inicia el intervalo para que el contador se actualice cada segundo.
             const countdownInterval = setInterval(countdown, 1000);
-            
-            // Llama a las funciones una vez al cargar la página para que se muestren los datos inmediatamente.
             countdown();
             animateDonations();
         });
