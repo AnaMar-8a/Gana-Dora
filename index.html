@@ -1,55 +1,73 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
+    <!-- ============== METADATOS Y CONFIGURACIÓN INICIAL ============== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dora Saldarriaga a la Cámara | El Poder Para el Pueblo</title>
 
+    <!-- ============== ENLACES A LIBRERÍAS EXTERNAS (CDN) ============== -->
+    <!-- Tailwind CSS: Framework principal para estilos rápidos y responsivos -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Tipografía "Poppins" para un look moderno -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome: Biblioteca de íconos para redes sociales y botones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+    <!-- ============== ESTILOS PERSONALIZADOS Y PALETA DE COLORES ============== -->
     <style>
+        /* Define la tipografía base para toda la página */
         body { font-family: 'Poppins', sans-serif; }
 
+        /* Define la paleta de colores de la campaña como variables CSS para fácil acceso y consistencia */
         :root {
-            --campaign-purple: #4B1D8C;
-            --campaign-fuchsia: #E5007E;
-            --campaign-dark: #1E0A3A;
-            --campaign-light: #F8F6FB;
-            --campaign-accent: #00BFA6;
+            --campaign-purple: #4B1D8C;   /* Morado principal */
+            --campaign-fuchsia: #E5007E;  /* Fucsia para acentos y botones */
+            --campaign-dark: #1E0A3A;     /* Morado oscuro para fondos */
+            --campaign-light: #F8F6FB;    /* Blanco/Gris claro para fondos de sección */
+            --campaign-accent: #00BFA6;   /* Teal para la sección del contador */
         }
 
+        /* Estilo base del Hero Section: un gradiente para la vista en móviles */
         .hero-bg {
             background: linear-gradient(135deg, var(--campaign-dark), var(--campaign-purple));
         }
 
+        /* Estilo del Hero Section para pantallas grandes (desktops): Imagen de fondo de Dora */
         @media (min-width: 1024px) {
             .hero-bg {
-                background-image: linear-gradient(to right, rgba(30,10,58,0.95) 40%, rgba(75,29,140,0.8)), url('https://i.imgur.com/8Q9Z5gI.jpg');
+                /* Se aplica un gradiente sobre la imagen para asegurar que el texto sea legible */
+                background-image: linear-gradient(to right, rgba(30,10,58,0.95) 40%, rgba(75,29,140,0.8)), url('images/dora-bg.jpg');
                 background-size: cover;
                 background-position: center;
             }
         }
 
+        /* Animación para que los elementos aparezcan suavemente desde abajo */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
+        /* Animación para que el modal aparezca con un efecto de zoom */
         @keyframes popIn {
             from { opacity: 0; transform: scale(0.9); }
             to { opacity: 1; transform: scale(1); }
         }
 
+        /* Clases de utilidad para aplicar las animaciones */
         .fade-in { animation: fadeInUp 0.8s ease forwards; }
         .modal-content { animation: popIn 0.3s ease forwards; }
     </style>
 </head>
 <body class="bg-[var(--campaign-dark)] text-white">
 
+    <!-- =================================================================== -->
+    <!-- ENCABEZADO PRINCIPAL (HERO SECTION)                                 -->
+    <!-- Objetivo: Capturar la atención y comunicar el mensaje central.      -->
+    <!-- =================================================================== -->
     <header class="hero-bg min-h-screen flex items-center">
         <div class="container mx-auto px-6 lg:px-10 py-20 lg:py-0">
             <div class="lg:w-1/2 text-center lg:text-left space-y-6">
@@ -67,12 +85,17 @@
     </header>
 
     <main>
+        <!-- =================================================================== -->
+        <!-- SECCIÓN DE URGENCIA (CONTADOR REGRESIVO)                            -->
+        <!-- Objetivo: Crear un sentido de urgencia y movilización inmediata.   -->
+        <!-- =================================================================== -->
         <section id="urgencia" class="bg-[var(--campaign-accent)] py-20 text-center text-white">
             <div class="container mx-auto px-6">
                 <p class="text-xl font-medium">El cambio es ahora. Cada minuto cuenta. Antioquia está en nuestras manos.</p>
                 <h3 class="text-5xl font-extrabold uppercase my-6 text-[var(--campaign-light)] drop-shadow">¡Quedan!</h3>
 
                 <div class="flex justify-center items-center gap-4 mt-8 flex-wrap">
+                    <!-- Cada div representa una unidad de tiempo (días, horas, etc.) -->
                     <div class="bg-white/20 backdrop-blur-sm p-6 rounded-2xl w-28 sm:w-36">
                         <span id="days" class="text-5xl font-black">00</span>
                         <p class="mt-2 uppercase tracking-widest text-sm">Días</p>
@@ -95,9 +118,10 @@
             </div>
         </section>
 
-        <!-- ======================== -->
-        <!-- VOTOS SEGUROS -->
-        <!-- ======================== -->
+        <!-- =================================================================== -->
+        <!-- SECCIÓN DE VOTOS SEGUROS (LLAMADO A LA ACCIÓN PRINCIPAL)            -->
+        <!-- Objetivo: Convertir visitantes en votos comprometidos.             -->
+        <!-- =================================================================== -->
         <section id="votos-seguros" class="py-20 bg-[var(--campaign-light)] text-gray-800 text-center">
             <div class="container mx-auto px-6">
                 <h2 class="text-4xl md:text-5xl font-extrabold uppercase text-[var(--campaign-purple)]">Tu Voto es Nuestra Fuerza</h2>
@@ -108,11 +132,16 @@
             </div>
         </section>
 
+        <!-- =================================================================== -->
+        <!-- SECCIÓN DE DONACIONES (LLAMADO A LA ACCIÓN SECUNDARIO)              -->
+        <!-- Objetivo: Recaudar fondos y mostrar el apoyo colectivo.            -->
+        <!-- =================================================================== -->
         <section id="donaciones" class="py-20 bg-[var(--campaign-dark)] text-center">
             <div class="container mx-auto px-6">
                 <h2 class="text-4xl md:text-5xl font-extrabold uppercase mb-6">Esta Campaña la Financia el Pueblo</h2>
                 <p class="text-lg text-gray-200 max-w-3xl mx-auto">Cada aporte impulsa esta causa. Tu donación ayuda a imprimir material, transportar voluntarios y llegar a más rincones de Antioquia.</p>
 
+                <!-- Barra de Progreso de Donaciones -->
                 <div class="max-w-3xl mx-auto mt-12">
                     <div class="flex justify-between items-center mb-2 text-lg font-semibold text-gray-200">
                         <span>Recaudado: <span id="current-donations">$0</span></span>
@@ -125,14 +154,20 @@
                     </div>
                 </div>
 
+                <!-- Botón que abre el modal de donaciones -->
                 <button id="open-modal-btn" class="mt-12 inline-block bg-white text-[var(--campaign-purple)] font-bold text-xl uppercase px-12 py-4 rounded-full shadow-lg hover:bg-[var(--campaign-fuchsia)] hover:text-white transition-all duration-300 transform hover:scale-105">
                     ¡Aporto al cambio ahora!
                 </button>
             </div>
         </section>
 
+        <!-- =================================================================== -->
+        <!-- PIE DE PÁGINA (FOOTER)                                              -->
+        <!-- Objetivo: Instrucciones de voto claras y enlaces a redes sociales. -->
+        <!-- =================================================================== -->
         <footer class="bg-gray-900 py-16 text-center text-white">
             <h3 class="text-2xl font-bold uppercase">Este 26 de Octubre, VOTA ASÍ:</h3>
+            <!-- Tarjeta visual con instrucciones de voto -->
             <div class="max-w-md mx-auto mt-8 bg-white text-gray-900 rounded-2xl shadow-2xl p-6">
                 <p class="font-semibold text-lg">Cámara Antioquia</p>
                 <div class="mt-4 text-left space-y-3">
@@ -145,31 +180,33 @@
                         <p>Escribe el número <span class="text-[var(--campaign-fuchsia)] text-2xl font-bold">20</span>.</p>
                     </div>
                 </div>
-                <img src="https://i.imgur.com/u7qg0A4.png" alt="Logo Pacto Histórico 20" class="mx-auto mt-6 h-16">
+                <!-- Imagen "Cómo Votar" - Ruta local -->
+                <img src="images/como-votar.png" alt="Logo Pacto Histórico con el número 20" class="mx-auto mt-6 h-16">
             </div>
 
+            <!-- Enlaces a Redes Sociales con etiquetas aria-label para accesibilidad -->
             <div class="mt-10 flex justify-center gap-6 text-3xl">
-                <a href="https://www.facebook.com/DoraSaldarriagaG" target="_blank" class="text-gray-400 hover:text-[var(--campaign-fuchsia)]"><i class="fab fa-facebook-square"></i></a>
-                <a href="https://www.instagram.com/dora_saldarriagag/" target="_blank" class="text-gray-400 hover:text-[var(--campaign-fuchsia)]"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@dorasaldarriagag?_t=ZS-90Nt4PWsGo6&_r=1" target="_blank" class="text-gray-400 hover:text-[var(--campaign-fuchsia)]"><i class="fab fa-tiktok"></i></a>
-                <a href="https://chat.whatsapp.com/JQDgOTw9Kwc5atj5Et7ujz?mode=wwc-" target="_blank" class="text-gray-400 hover:text-[var(--campaign-fuchsia)]"><i class="fab fa-whatsapp-square"></i></a>
+                <a href="https://www.facebook.com/DoraSaldarriagaG" target="_blank" aria-label="Facebook de Dora Saldarriaga" class="text-gray-400 hover:text-[var(--campaign-fuchsia)]"><i class="fab fa-facebook-square"></i></a>
+                <a href="https://www.instagram.com/dora_saldarriagag/" target="_blank" aria-label="Instagram de Dora Saldarriaga" class="text-gray-400 hover:text-[var(--campaign-fuchsia)]"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@dorasaldarriagag?_t=ZS-90Nt4PWsGo6&_r=1" target="_blank" aria-label="TikTok de Dora Saldarriaga" class="text-gray-400 hover:text-[var(--campaign-fuchsia)]"><i class="fab fa-tiktok"></i></a>
+                <a href="https://chat.whatsapp.com/JQDgOTw9Kwc5atj5Et7ujz?mode=wwc-" target="_blank" aria-label="WhatsApp de la campaña" class="text-gray-400 hover:text-[var(--campaign-fuchsia)]"><i class="fab fa-whatsapp-square"></i></a>
             </div>
 
             <p class="mt-8 text-lg font-semibold text-[var(--campaign-fuchsia)]">#PonteLa20PorLasMujeres #DoraALaCámara</p>
         </footer>
     </main>
 
-    <!-- ======================== -->
-    <!-- BOTÓN FLOTANTE VOLUNTARIOS -->
-    <!-- ======================== -->
+    <!-- =================================================================== -->
+    <!-- ELEMENTOS FLOTANTES Y MODALES                                       -->
+    <!-- =================================================================== -->
+
+    <!-- Botón Flotante para Voluntarios -->
     <a href="https://chat.whatsapp.com/IsHoeheGJfzDoWsvPeXVsH?mode=wwc" target="_blank" class="fixed right-4 top-1/2 -translate-y-1/2 z-50 bg-[var(--campaign-fuchsia)] text-white px-4 py-3 rounded-full shadow-lg flex items-center gap-3 hover:bg-white hover:text-[var(--campaign-fuchsia)] transition-all duration-300 transform hover:scale-105">
         <i class="fa-solid fa-hands-holding-circle text-2xl"></i>
         <span class="font-bold hidden md:inline">Ser Voluntaria/o</span>
     </a>
 
-    <!-- ======================== -->
-    <!-- MODAL DE DONACIONES -->
-    <!-- ======================== -->
+    <!-- Modal (Pop-up) de Donaciones -->
     <div id="donation-modal" class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 hidden">
         <div class="bg-[var(--campaign-dark)] border-2 border-[var(--campaign-fuchsia)] text-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center relative modal-content">
             <button id="close-modal-btn" class="absolute top-4 right-4 text-2xl text-gray-400 hover:text-white">&times;</button>
@@ -182,78 +219,109 @@
         </div>
     </div>
 
-
+    <!-- =================================================================== -->
+    <!-- SCRIPT DE JAVASCRIPT                                                -->
+    <!-- Objetivo: Darle interactividad a la página (contador, modal, etc.)  -->
+    <!-- =================================================================== -->
     <script>
-        const countdown = () => {
-            const targetDate = new Date('October 26, 2025 08:00:00').getTime();
-            const now = new Date().getTime();
-            const distance = targetDate - now;
+        // Se ejecuta cuando todo el contenido HTML de la página se ha cargado.
+        document.addEventListener('DOMContentLoaded', () => {
 
-            if (distance < 0) {
-                clearInterval(countdownInterval);
-                document.getElementById('urgencia').innerHTML = '<div class="container mx-auto px-6"><h3 class="text-5xl font-extrabold uppercase my-6 text-[var(--campaign-light)] drop-shadow">¡ES HOY, A VOTAR!</h3></div>';
-                return;
-            }
+            // --- LÓGICA DEL CONTADOR REGRESIVO ---
+            const countdown = () => {
+                const targetDate = new Date('October 26, 2025 08:00:00').getTime(); // Fecha de las elecciones
+                const now = new Date().getTime();
+                const distance = targetDate - now;
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerText = String(days).padStart(2, '0');
-            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
-        };
-
-        const animateDonations = () => {
-            const meta = 6000000;
-            const recaudado = 350000;
-
-            const percentage = Math.round((recaudado / meta) * 100);
-
-            const bar = document.getElementById('donations-bar');
-            const text = document.getElementById('donations-percentage');
-            const current = document.getElementById('current-donations');
-
-            current.innerText = `$${recaudado.toLocaleString('es-CO')}`;
-
-            setTimeout(() => {
-                bar.style.width = `${percentage}%`;
-                text.innerText = `${percentage}%`;
-                if (percentage > 10) {
-                    text.classList.remove('opacity-0');
+                // Si la fecha ya pasó, detiene el contador y muestra un mensaje.
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    const urgencySection = document.getElementById('urgencia');
+                    if(urgencySection) {
+                        urgencySection.innerHTML = '<div class="container mx-auto px-6 py-10"><h3 class="text-5xl font-extrabold uppercase text-[var(--campaign-light)] drop-shadow">¡ES HOY, A VOTAR!</h3></div>';
+                    }
+                    return;
                 }
-            }, 400);
-        };
 
-        // Modal Logic
-        const openModalBtn = document.getElementById('open-modal-btn');
-        const closeModalBtn = document.getElementById('close-modal-btn');
-        const donationModal = document.getElementById('donation-modal');
+                // Cálculos para obtener días, horas, minutos y segundos.
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        openModalBtn.addEventListener('click', () => {
-            donationModal.classList.remove('hidden');
-        });
+                // Actualiza los elementos en el HTML con los nuevos valores.
+                document.getElementById('days').innerText = String(days).padStart(2, '0');
+                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+            };
 
-        closeModalBtn.addEventListener('click', () => {
-            donationModal.classList.add('hidden');
-        });
+            // --- LÓGICA DE LA BARRA DE PROGRESO DE DONACIONES ---
+            const animateDonations = () => {
+                // --- ¡IMPORTANTE! Actualiza estos valores para reflejar el estado real ---
+                const meta = 6000000;
+                const recaudado = 350000;
+                // --- Fin de la sección para cambiar ---
 
-        // Close modal if clicking outside the content
-        donationModal.addEventListener('click', (e) => {
-            if (e.target === donationModal) {
-                donationModal.classList.add('hidden');
+                // Calcula el porcentaje recaudado.
+                const percentage = Math.round((recaudado / meta) * 100);
+
+                // Obtiene los elementos del DOM que se van a manipular.
+                const bar = document.getElementById('donations-bar');
+                const text = document.getElementById('donations-percentage');
+                const current = document.getElementById('current-donations');
+
+                // Formatea el número recaudado con separadores de miles.
+                current.innerText = `$${recaudado.toLocaleString('es-CO')}`;
+
+                // Aplica la animación a la barra y muestra el porcentaje.
+                setTimeout(() => {
+                    if(bar) bar.style.width = `${percentage}%`;
+                    if(text) {
+                        text.innerText = `${percentage}%`;
+                        // Muestra el texto del porcentaje solo si es mayor al 10% para no sobrecargar la barra.
+                        if (percentage > 10) {
+                            text.classList.remove('opacity-0');
+                        }
+                    }
+                }, 400);
+            };
+
+            // --- LÓGICA DEL MODAL DE DONACIONES ---
+            const openModalBtn = document.getElementById('open-modal-btn');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const donationModal = document.getElementById('donation-modal');
+
+            if(openModalBtn && donationModal) {
+                openModalBtn.addEventListener('click', () => {
+                    donationModal.classList.remove('hidden');
+                });
             }
-        });
 
-        const countdownInterval = setInterval(countdown, 1000);
-        
-        // Run functions on page load
-        countdown();
-        animateDonations();
+            if(closeModalBtn && donationModal) {
+                closeModalBtn.addEventListener('click', () => {
+                    donationModal.classList.add('hidden');
+                });
+            }
+            
+            if(donationModal) {
+                // Cierra el modal si el usuario hace clic fuera del contenido.
+                donationModal.addEventListener('click', (e) => {
+                    if (e.target === donationModal) {
+                        donationModal.classList.add('hidden');
+                    }
+                });
+            }
+
+            // --- EJECUCIÓN INICIAL DE FUNCIONES ---
+            // Inicia el intervalo para que el contador se actualice cada segundo.
+            const countdownInterval = setInterval(countdown, 1000);
+            
+            // Llama a las funciones una vez al cargar la página para que se muestren los datos inmediatamente.
+            countdown();
+            animateDonations();
+        });
     </script>
 </body>
 </html>
-
 
