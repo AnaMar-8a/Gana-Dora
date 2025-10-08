@@ -180,8 +180,10 @@
                         <p>Escribe el número <span class="text-[var(--campaign-fuchsia)] text-2xl font-bold">20</span>.</p>
                     </div>
                 </div>
-                <!-- Imagen "Cómo Votar" - Ruta local -->
-                <img src="images/como-votar.png" alt="Logo Pacto Histórico con el número 20" class="mx-auto mt-6 h-16">
+                <!-- Imagen "Cómo Votar" - ahora es un botón que abre el modal -->
+                <button id="open-voting-modal-btn" class="mx-auto mt-6 block transition-transform duration-300 hover:scale-105" aria-label="Ver instrucciones de voto en grande">
+                    <img src="images/como-votar.png" alt="Logo Pacto Histórico con el número 20" class="h-16">
+                </button>
             </div>
 
             <!-- Enlaces a Redes Sociales con etiquetas aria-label para accesibilidad -->
@@ -218,6 +220,23 @@
             <p class="mt-6 text-gray-300">Tu aporte es el motor de este cambio.</p>
         </div>
     </div>
+    
+    <!-- Modal (Pop-up) de Cómo Votar -->
+    <div id="voting-modal" class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 hidden">
+        <div class="bg-[var(--campaign-dark)] border-2 border-[var(--campaign-accent)] text-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center relative modal-content">
+            <button id="close-voting-modal-btn" class="absolute top-4 right-4 text-2xl text-gray-400 hover:text-white">&times;</button>
+            <h3 class="text-2xl font-bold uppercase mb-4">¡Así Votamos!</h3>
+            <!-- Imagen "Cómo Votar" en grande -->
+            <img src="images/como-votar.png" alt="Logo Pacto Histórico con el número 20" class="mx-auto w-full max-w-xs rounded-lg">
+            <p class="mt-4 text-gray-300">¡Ayúdanos a difundir! Comparte esta imagen con tus contactos.</p>
+            <!-- Call to Action: Compartir en WhatsApp -->
+            <a href="https://api.whatsapp.com/send?text=¡Este%2026%20de%20octubre%2C%20apoya%20a%20Dora%20Saldarriaga!%20Así%20se%20vota%3A%20Marcas%20Pacto%20Histórico%20y%20escribes%20el%2020.%20%23PonteLa20PorLasMujeres" target="_blank" class="mt-6 inline-block bg-green-500 text-white font-bold text-lg uppercase px-10 py-3 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105">
+                <i class="fab fa-whatsapp mr-2"></i>
+                Compartir en WhatsApp
+            </a>
+        </div>
+    </div>
+
 
     <!-- =================================================================== -->
     <!-- SCRIPT DE JAVASCRIPT                                                -->
@@ -309,6 +328,32 @@
                 donationModal.addEventListener('click', (e) => {
                     if (e.target === donationModal) {
                         donationModal.classList.add('hidden');
+                    }
+                });
+            }
+
+            // --- LÓGICA DEL MODAL DE CÓMO VOTAR ---
+            const openVotingModalBtn = document.getElementById('open-voting-modal-btn');
+            const closeVotingModalBtn = document.getElementById('close-voting-modal-btn');
+            const votingModal = document.getElementById('voting-modal');
+
+            if(openVotingModalBtn && votingModal) {
+                openVotingModalBtn.addEventListener('click', () => {
+                    votingModal.classList.remove('hidden');
+                });
+            }
+
+            if(closeVotingModalBtn && votingModal) {
+                closeVotingModalBtn.addEventListener('click', () => {
+                    votingModal.classList.add('hidden');
+                });
+            }
+            
+            if(votingModal) {
+                // Cierra el modal si el usuario hace clic fuera del contenido.
+                votingModal.addEventListener('click', (e) => {
+                    if (e.target === votingModal) {
+                        votingModal.classList.add('hidden');
                     }
                 });
             }
