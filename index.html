@@ -177,7 +177,8 @@
                 <!-- Contenedor para la imagen y el CTA visual -->
                 <div class="relative mt-6 group">
                     <button id="open-voting-modal-btn" class="mx-auto block w-full" aria-label="Ver instrucciones de voto en grande">
-                        <img src="images/como-votar.png" alt="Logo Pacto Histórico con el número 20" class="h-32 w-auto mx-auto rounded-lg">
+                        <!-- Imagen de "Cómo Votar" con tamaño aumentado a h-48 -->
+                        <img src="images/como-votar.png" alt="Logo Pacto Histórico con el número 20" class="h-48 w-auto mx-auto rounded-lg">
                     </button>
                     <!-- CTA Visual que aparece al pasar el cursor -->
                     <div class="absolute inset-0 bg-black/60 flex items-center justify-center text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg pointer-events-none">
@@ -259,7 +260,7 @@
                 if (distance < 0) {
                     clearInterval(countdownInterval);
                     const urgencySection = document.getElementById('urgencia');
-                    if(urgenciaSection) {
+                    if(urgencySection) {
                         urgencySection.innerHTML = '<div class="container mx-auto px-6 py-10"><h3 class="text-5xl font-extrabold uppercase text-[var(--campaign-light)] drop-shadow">¡ES HOY, A VOTAR!</h3></div>';
                     }
                     return;
@@ -325,3 +326,4 @@
     </script>
 </body>
 </html>
+
