@@ -167,19 +167,26 @@
         <!-- =================================================================== -->
         <footer class="bg-gray-900 py-16 text-center text-white">
             <h3 class="text-2xl font-bold uppercase">Este 26 de Octubre, VOTA ASÍ:</h3>
-            <!-- Tarjeta visual con instrucciones de voto -->
-            <div class="max-w-md mx-auto mt-8 bg-white text-gray-900 rounded-2xl shadow-2xl p-6">
+            <!-- Tarjeta visual con instrucciones de voto simplificadas y más grande -->
+            <div class="max-w-xl mx-auto mt-8 bg-white text-gray-900 rounded-2xl shadow-2xl p-8">
                 <p class="font-semibold text-lg">Cámara Antioquia</p>
-                <div class="mt-4 text-left space-y-3">
-                    <div class="flex items-center gap-3">
-                        <span class="bg-[var(--campaign-purple)] text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">1</span>
-                        <p>Marca el número <span class="text-[var(--campaign-fuchsia)] font-bold">20</span>.</p>
+                <div class="mt-4 text-center">
+                    <p class="text-xl text-gray-700">Solo debes seleccionar el número</p>
+                    <p class="text-[var(--campaign-fuchsia)] text-8xl font-black my-2 tracking-tighter">20</p>
+                </div>
+                <!-- Contenedor para la imagen y el CTA visual -->
+                <div class="relative mt-6 group">
+                    <button id="open-voting-modal-btn" class="mx-auto block w-full" aria-label="Ver instrucciones de voto en grande">
+                        <img src="images/como-votar.png" alt="Logo Pacto Histórico con el número 20" class="h-32 w-auto mx-auto rounded-lg">
+                    </button>
+                    <!-- CTA Visual que aparece al pasar el cursor -->
+                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center text-white text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg pointer-events-none">
+                        <span>
+                            <i class="fas fa-search-plus mr-2"></i>
+                            Ampliar
+                        </span>
                     </div>
                 </div>
-                <!-- Imagen "Cómo Votar" - ahora es un botón que abre el modal -->
-                <button id="open-voting-modal-btn" class="mx-auto mt-6 block transition-transform duration-300 hover:scale-105" aria-label="Ver instrucciones de voto en grande">
-                    <img src="images/como-votar.png" alt="Logo Pacto Histórico con el número 20" class="h-16">
-                </button>
             </div>
 
             <!-- Enlaces a Redes Sociales con etiquetas aria-label para accesibilidad -->
@@ -223,7 +230,7 @@
         <!-- Contenedor del modal: Aumentado de max-w-lg a max-w-2xl para más espacio -->
         <div class="bg-[var(--campaign-dark)] border-2 border-[var(--campaign-accent)] text-white rounded-2xl shadow-2xl p-8 max-w-2xl w-full text-center relative modal-content">
             <button id="close-voting-modal-btn" class="absolute top-4 right-4 text-2xl text-gray-400 hover:text-white">&times;</button>
-            <h3 class="text-2xl font-bold uppercase mb-4">¡Así Votamos!</h3>
+            <h3 class="text-2xl md:text-3xl font-bold uppercase mb-4">¡Así Votamos!</h3>
             <!-- Imagen "Cómo Votar": Aumentada de max-w-sm a max-w-md para que sea más grande -->
             <img src="images/como-votar.png" alt="Logo Pacto Histórico con el número 20" class="mx-auto w-full max-w-md rounded-lg">
             <p class="mt-4 text-gray-300">¡Comparte la información y ayúdanos a ganar!</p>
@@ -252,7 +259,7 @@
                 if (distance < 0) {
                     clearInterval(countdownInterval);
                     const urgencySection = document.getElementById('urgencia');
-                    if(urgencySection) {
+                    if(urgenciaSection) {
                         urgencySection.innerHTML = '<div class="container mx-auto px-6 py-10"><h3 class="text-5xl font-extrabold uppercase text-[var(--campaign-light)] drop-shadow">¡ES HOY, A VOTAR!</h3></div>';
                     }
                     return;
@@ -318,4 +325,3 @@
     </script>
 </body>
 </html>
-
