@@ -191,7 +191,8 @@
                 <a href="https://www.facebook.com/DoraSaldarriagaG" target="_blank" aria-label="Facebook de Dora Saldarriaga" class="text-gray-400 hover:text-[var(--campaign-fuchsia)]"><i class="fab fa-facebook-square"></i></a>
                 <a href="https://www.instagram.com/dora_saldarriagag/" target="_blank" aria-label="Instagram de Dora Saldarriaga" class="text-gray-400 hover:text-[var(--campaign-fuchsia)]"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.tiktok.com/@dorasaldarriagag?_t=ZS-90Nt4PWsGo6&_r=1" target="_blank" aria-label="TikTok de Dora Saldarriaga" class="text-gray-400 hover:text-[var(--campaign-fuchsia)]"><i class="fab fa-tiktok"></i></a>
-                <a href="https://chat.whatsapp.com/JQDgOTw9Kwc5atj5Et7ujz?mode=wwc-" target="_blank" aria-label="WhatsApp de la campaña" class="text-gray-400 hover:text-[var(--campaign-fuchsia)]"><i class="fab fa-whatsapp-square"></i></a>
+                <!-- ENLACE WHATSAPP CORREGIDO -->
+                <a href="https://chat.whatsapp.com/JQDgOTw9Kwc5atj5Et7ujz" target="_blank" aria-label="WhatsApp de la campaña" class="text-gray-400 hover:text-[var(--campaign-fuchsia)]"><i class="fab fa-whatsapp-square"></i></a>
             </div>
 
             <p class="mt-8 text-lg font-semibold text-[var(--campaign-fuchsia)]">#PonteLa20PorLasMujeres #DoraALaCámara</p>
@@ -202,8 +203,8 @@
     <!-- ELEMENTOS FLOTANTES Y MODALES                                       -->
     <!-- =================================================================== -->
 
-    <!-- Botón Flotante para Voluntarios -->
-    <a href="https://chat.whatsapp.com/IsHoeheGJfzDoWsvPeXVsH?mode=wwc" target="_blank" class="fixed right-4 top-1/2 -translate-y-1/2 z-50 bg-[var(--campaign-fuchsia)] text-white px-4 py-3 rounded-full shadow-lg flex items-center gap-3 hover:bg-white hover:text-[var(--campaign-fuchsia)] transition-all duration-300 transform hover:scale-105">
+    <!-- Botón Flotante para Voluntarios - ENLACE WHATSAPP CORREGIDO -->
+    <a href="https://chat.whatsapp.com/IsHoeheGJfzDoWsvPeXVsH" target="_blank" class="fixed right-4 top-1/2 -translate-y-1/2 z-50 bg-[var(--campaign-fuchsia)] text-white px-4 py-3 rounded-full shadow-lg flex items-center gap-3 hover:bg-white hover:text-[var(--campaign-fuchsia)] transition-all duration-300 transform hover:scale-105">
         <i class="fa-solid fa-hands-holding-circle text-2xl"></i>
         <span class="font-bold hidden md:inline">Ser Voluntaria/o</span>
     </a>
@@ -221,29 +222,22 @@
         </div>
     </div>
     
-    <!-- Modal (Pop-up) de Cómo Votar con funcionalidad mejorada -->
+    <!-- Modal (Pop-up) de Cómo Votar con tamaño aumentado y link actualizado -->
     <div id="voting-modal" class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 hidden">
-        <div class="bg-[var(--campaign-dark)] border-2 border-[var(--campaign-accent)] text-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center relative modal-content">
+        <!-- Contenedor del modal: Aumentado de max-w-lg a max-w-2xl para más espacio -->
+        <div class="bg-[var(--campaign-dark)] border-2 border-[var(--campaign-accent)] text-white rounded-2xl shadow-2xl p-8 max-w-2xl w-full text-center relative modal-content">
             <button id="close-voting-modal-btn" class="absolute top-4 right-4 text-2xl text-gray-400 hover:text-white">&times;</button>
-            <h3 class="text-2xl font-bold uppercase mb-4">¡Comparte para Ganar!</h3>
-            <img src="images/como-votar.png" alt="Logo Pacto Histórico con el número 20" class="mx-auto w-full max-w-xs rounded-lg">
-            
-            <div class="mt-6 space-y-4">
-                <!-- Paso 1: Descargar Imagen -->
-                <a href="images/como-votar.png" download="como-votar-dora-saldarriaga.png" class="w-full inline-block bg-white text-[var(--campaign-purple)] font-bold text-lg uppercase px-10 py-3 rounded-full shadow-lg hover:bg-gray-200 transition-all duration-300">
-                    <i class="fas fa-download mr-2"></i>
-                    1. Descargar Imagen
-                </a>
-                <!-- Paso 2: Copiar Mensaje y Abrir WhatsApp -->
-                <button id="copy-and-share-btn" class="w-full inline-block bg-green-500 text-white font-bold text-lg uppercase px-10 py-3 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300">
-                    <i class="fab fa-whatsapp mr-2"></i>
-                    2. Copiar Mensaje y Abrir WhatsApp
-                </button>
-            </div>
+            <h3 class="text-2xl font-bold uppercase mb-4">¡Así Votamos!</h3>
+            <!-- Imagen "Cómo Votar": Aumentada de max-w-sm a max-w-md para que sea más grande -->
+            <img src="images/como-votar.png" alt="Logo Pacto Histórico con el número 20" class="mx-auto w-full max-w-md rounded-lg">
+            <p class="mt-4 text-gray-300">¡Comparte la información y ayúdanos a ganar!</p>
+            <!-- Call to Action: Compartir en WhatsApp con link y mensaje nuevos -->
+            <a href="https://api.whatsapp.com/send?text=%C2%A1Este%2026%20de%20octubre%2C%20hagamos%20historia!%20%F0%9F%92%AA%20Vota%20por%20Dora%20Saldarriaga%20a%20la%20C%C3%A1mara%20por%20Antioquia.%20Es%20f%C3%A1cil%2C%20as%C3%AD%20se%20vota.%20Conoce%20m%C3%A1s%20sobre%20la%20campa%C3%B1a%20del%20pueblo%20aqu%C3%AD%3A%20https%3A%2F%2Fdorasaldarriaga.netlify.app%2F.%20%C2%A1Ponte%20la%2020%20por%20las%20mujeres!%20%23DoraALaC%C3%A1mara" target="_blank" class="mt-6 inline-block bg-green-500 text-white font-bold text-lg uppercase px-10 py-3 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105">
+                <i class="fab fa-whatsapp mr-2"></i>
+                Compartir en WhatsApp
+            </a>
         </div>
     </div>
-    <!-- Elemento oculto para copiar el texto -->
-    <textarea id="whatsapp-message" class="hidden">¡Este 26 de octubre, apoya a Dora Saldarriaga! Así se vota: Marcas Pacto Histórico y escribes el 20. #PonteLa20PorLasMujeres</textarea>
 
 
     <!-- =================================================================== -->
@@ -316,26 +310,6 @@
                     });
                 }
             };
-
-            // --- LÓGICA PARA COPIAR Y COMPARTIR EN WHATSAPP ---
-            const copyAndShareBtn = document.getElementById('copy-and-share-btn');
-            if (copyAndShareBtn) {
-                copyAndShareBtn.addEventListener('click', () => {
-                    const messageTextarea = document.getElementById('whatsapp-message');
-                    messageTextarea.select();
-                    // document.execCommand('copy') es usado para máxima compatibilidad
-                    document.execCommand('copy');
-
-                    // Feedback visual para el usuario
-                    copyAndShareBtn.innerHTML = '<i class="fas fa-check mr-2"></i> ¡Texto Copiado!';
-                    setTimeout(() => {
-                         copyAndShareBtn.innerHTML = '<i class="fab fa-whatsapp mr-2"></i> 2. Copiar Mensaje y Abrir WhatsApp';
-                    }, 2000);
-
-                    // Abrir WhatsApp
-                    window.open('https://api.whatsapp.com/send?text=', '_blank');
-                });
-            }
 
             // --- INICIALIZACIÓN DE TODAS LAS FUNCIONALIDADES ---
             setupModal('open-modal-btn', 'close-donation-modal-btn', 'donation-modal');
