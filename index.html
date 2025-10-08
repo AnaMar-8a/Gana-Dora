@@ -4,80 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dora Saldarriaga a la Cámara | El Poder Para el Pueblo</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Poppins (moderna y versátil) -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
-        /* Estilos personalizados y configuración de Tailwind */
-        body {
-            font-family: 'Poppins', sans-serif;
+        body { font-family: 'Poppins', sans-serif; }
+
+        :root {
+            --campaign-purple: #4B1D8C;
+            --campaign-fuchsia: #E5007E;
+            --campaign-dark: #1E0A3A;
+            --campaign-light: #F8F6FB;
+            --campaign-accent: #00BFA6;
         }
 
-        /* Colores personalizados de la campaña para usar con Tailwind */
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'campaign-purple': '#5C2D91',
-                        'campaign-fuchsia': '#C1006A', /* AJUSTE: Tono de fucsia optimizado para mayor contraste */
-                        'campaign-dark': '#2c004e',
-                    }
-                }
-            }
-        }
-        
-        /* Animación para la aparición de elementos */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in-element {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-        
-        /* Estilo para el Hero con la imagen de Dora a la derecha en pantallas grandes */
         .hero-bg {
-            background-image: linear-gradient(to right, #2c004e, #5C2D91);
+            background: linear-gradient(135deg, var(--campaign-dark), var(--campaign-purple));
         }
 
         @media (min-width: 1024px) {
             .hero-bg {
-                background-image: 
-                    linear-gradient(to right, #2c004e 40%, rgba(92, 45, 145, 0.8)), 
-                    url('https://i.imgur.com/8Q9Z5gI.jpg'); /* Usando una URL de la imagen que subiste por conveniencia */
+                background-image: linear-gradient(to right, rgba(30,10,58,0.95) 40%, rgba(75,29,140,0.8)), url('https://i.imgur.com/8Q9Z5gI.jpg');
                 background-size: cover;
-                background-position: center center;
+                background-position: center;
             }
         }
 
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .fade-in { animation: fadeInUp 0.8s ease forwards; }
+        .modal-content { animation: popIn 0.3s ease forwards; }
     </style>
 </head>
-<body class="bg-campaign-dark text-white">
+<body class="bg-[var(--campaign-dark)] text-white">
 
-    <!-- ======================== -->
-    <!-- HERO / ENCABEZADO MODERNO -->
-    <!-- ======================== -->
     <header class="hero-bg min-h-screen flex items-center">
-        <div class="container mx-auto px-6 lg:px-8 py-20 lg:py-0">
-            <div class="lg:w-1/2 text-center lg:text-left">
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-tight fade-in-element">
-                    ¡Este 26 de Octubre, el poder del pueblo llega al congreso!
+        <div class="container mx-auto px-6 lg:px-10 py-20 lg:py-0">
+            <div class="lg:w-1/2 text-center lg:text-left space-y-6">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight fade-in">
+                    ¡Este 26 de Octubre, el poder del pueblo llega al Congreso!
                 </h1>
-                <h2 class="mt-6 text-lg md:text-xl font-light max-w-2xl mx-auto lg:mx-0 fade-in-element" style="animation-delay: 0.2s;">
-                    Soy Dora Saldarriaga y junto a ti, vamos a llevar la voz de las mujeres y de la gente a la Cámara por Antioquia.
-                </h2>
-                <!-- Botón de acción directo en el header para maximizar conversión -->
-                <a href="#votos-seguros" class="mt-10 inline-block bg-campaign-fuchsia text-white font-bold text-xl uppercase px-12 py-4 rounded-full shadow-lg hover:bg-white hover:text-campaign-fuchsia transition-all duration-300 transform hover:scale-105 fade-in-element" style="animation-delay: 0.4s;">
+                <p class="text-lg md:text-xl text-gray-200 fade-in">
+                    Soy <strong>Dora Saldarriaga</strong> y junto a ti, llevaremos la voz de las mujeres y del pueblo a la Cámara por Antioquia.
+                </p>
+                <a href="#votos-seguros" class="inline-block mt-6 bg-[var(--campaign-fuchsia)] text-white font-bold text-xl uppercase px-12 py-4 rounded-full shadow-lg hover:bg-white hover:text-[var(--campaign-fuchsia)] transition-all duration-300 transform hover:scale-105 fade-in">
                     ¡Soy Voto Seguro!
                 </a>
             </div>
@@ -85,131 +67,131 @@
     </header>
 
     <main>
-        <!-- ======================== -->
-        <!-- CONTADOR CON NUEVO DISEÑO -->
-        <!-- ======================== -->
-        <section id="urgencia" class="bg-campaign-purple py-20">
-            <div class="container mx-auto px-6 text-center">
-                <p class="text-xl md:text-2xl font-semibold">El cambio es ahora y cada minuto cuenta. El futuro de Antioquia está en nuestras manos.</p>
-                <h3 class="text-4xl md:text-5xl font-black uppercase my-6">¡Quedan!</h3>
-                
-                <!-- El contador ahora tiene un diseño de "tarjetas" -->
-                <div class="flex justify-center items-center gap-2 sm:gap-4 md:gap-8 mt-8">
-                    <div class="bg-white/10 p-4 md:p-6 rounded-2xl w-20 sm:w-24 md:w-36">
-                        <span id="days" class="text-4xl sm:text-5xl md:text-7xl font-black">00</span>
-                        <p class="mt-2 text-xs sm:text-sm md:text-base uppercase tracking-widest">Días</p>
+        <section id="urgencia" class="bg-[var(--campaign-accent)] py-20 text-center text-white">
+            <div class="container mx-auto px-6">
+                <p class="text-xl font-medium">El cambio es ahora. Cada minuto cuenta. Antioquia está en nuestras manos.</p>
+                <h3 class="text-5xl font-extrabold uppercase my-6 text-[var(--campaign-light)] drop-shadow">¡Quedan!</h3>
+
+                <div class="flex justify-center items-center gap-4 mt-8 flex-wrap">
+                    <div class="bg-white/20 backdrop-blur-sm p-6 rounded-2xl w-28 sm:w-36">
+                        <span id="days" class="text-5xl font-black">00</span>
+                        <p class="mt-2 uppercase tracking-widest text-sm">Días</p>
                     </div>
-                    <div class="bg-white/10 p-4 md:p-6 rounded-2xl w-20 sm:w-24 md:w-36">
-                        <span id="hours" class="text-4xl sm:text-5xl md:text-7xl font-black">00</span>
-                        <p class="mt-2 text-xs sm:text-sm md:text-base uppercase tracking-widest">Horas</p>
+                    <div class="bg-white/20 backdrop-blur-sm p-6 rounded-2xl w-28 sm:w-36">
+                        <span id="hours" class="text-5xl font-black">00</span>
+                        <p class="mt-2 uppercase tracking-widest text-sm">Horas</p>
                     </div>
-                    <div class="bg-white/10 p-4 md:p-6 rounded-2xl w-20 sm:w-24 md:w-36">
-                        <span id="minutes" class="text-4xl sm:text-5xl md:text-7xl font-black">00</span>
-                        <p class="mt-2 text-xs sm:text-sm md:text-base uppercase tracking-widest">Minutos</p>
+                    <div class="bg-white/20 backdrop-blur-sm p-6 rounded-2xl w-28 sm:w-36">
+                        <span id="minutes" class="text-5xl font-black">00</span>
+                        <p class="mt-2 uppercase tracking-widest text-sm">Minutos</p>
                     </div>
-                    <div class="bg-white/10 p-4 md:p-6 rounded-2xl w-20 sm:w-24 md:w-36">
-                        <span id="seconds" class="text-4xl sm:text-5xl md:text-7xl font-black">00</span>
-                        <p class="mt-2 text-xs sm:text-sm md:text-base uppercase tracking-widest">Segundos</p>
+                    <div class="bg-white/20 backdrop-blur-sm p-6 rounded-2xl w-28 sm:w-36">
+                        <span id="seconds" class="text-5xl font-black">00</span>
+                        <p class="mt-2 uppercase tracking-widest text-sm">Segundos</p>
                     </div>
                 </div>
-                
-                <p class="mt-10 text-xl md:text-3xl font-bold uppercase tracking-wider">Para ponernos la 20 por las mujeres y hacer historia.</p>
+
+                <p class="mt-10 text-2xl font-bold uppercase tracking-wider text-[var(--campaign-light)]">Para ponernos la 20 por las mujeres y hacer historia.</p>
             </div>
         </section>
 
         <!-- ======================== -->
-        <!-- VOTOS SEGUROS - DISEÑO LIMPIO -->
+        <!-- VOTOS SEGUROS -->
         <!-- ======================== -->
-        <section id="votos-seguros" class="py-20 bg-gray-100 text-gray-800">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl md:text-5xl font-black uppercase text-campaign-purple">Tu Voto es Nuestra Fuerza</h2>
-                <p class="text-lg mt-4 max-w-3xl mx-auto">Para ganar este 26 de octubre, necesito saber que cuento contigo. Registrar tu voto nos permite organizar la campaña, defender cada tarjetón y asegurar que nuestra victoria sea contundente. ¡Suma tu nombre a la lista del cambio!</p>
-                <a href="#" class="mt-8 inline-block bg-campaign-purple text-white font-bold text-xl uppercase px-12 py-4 rounded-full shadow-lg hover:bg-campaign-fuchsia transition-all duration-300 transform hover:scale-105">
-                    <!--! CAMBIAR AQUÍ: Pon el link a tu formulario de Votos -->
+        <section id="votos-seguros" class="py-20 bg-[var(--campaign-light)] text-gray-800 text-center">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-extrabold uppercase text-[var(--campaign-purple)]">Tu Voto es Nuestra Fuerza</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto mt-4">Para ganar, necesito saber que cuento contigo. Registrar tu voto nos permite organizar la campaña, defender cada tarjetón y asegurar que nuestra victoria sea contundente.</p>
+                <a href="#" class="mt-8 inline-block bg-[var(--campaign-purple)] text-white font-bold text-xl uppercase px-12 py-4 rounded-full shadow-lg hover:bg-[var(--campaign-fuchsia)] transition-all duration-300 transform hover:scale-105">
                     ¡Sí, Dora, cuenta con mi voto!
                 </a>
             </div>
         </section>
 
-        <!-- ======================== -->
-        <!-- DONACIONES - DISEÑO DE IMPACTO -->
-        <!-- ======================== -->
-        <section id="donaciones" class="py-20 bg-campaign-dark">
-            <div class="container mx-auto px-6 text-center">
-                 <h2 class="text-4xl md:text-5xl font-black uppercase text-white">Esta Campaña la Financia el Pueblo</h2>
-                <p class="text-lg mt-4 max-w-3xl mx-auto">Nuestra fuerza es la gente. Cada aporte se convierte en un volante, en transporte para un voluntario, en la voz que llega a más rincones de Antioquia. Tu donación es una inversión directa para que el poder regrese a las manos del pueblo.</p>
-                
-                <!-- Barra de Progreso de Donaciones -->
+        <section id="donaciones" class="py-20 bg-[var(--campaign-dark)] text-center">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-extrabold uppercase mb-6">Esta Campaña la Financia el Pueblo</h2>
+                <p class="text-lg text-gray-200 max-w-3xl mx-auto">Cada aporte impulsa esta causa. Tu donación ayuda a imprimir material, transportar voluntarios y llegar a más rincones de Antioquia.</p>
+
                 <div class="max-w-3xl mx-auto mt-12">
-                    <div class="flex justify-between items-center mb-2 text-lg font-bold">
-                        <span class="text-white">Recaudado: <span id="current-donations">$0</span></span>
-                        <span class="text-gray-400">Meta: $50,000,000</span>
+                    <div class="flex justify-between items-center mb-2 text-lg font-semibold text-gray-200">
+                        <span>Recaudado: <span id="current-donations">$0</span></span>
+                        <span>Meta: $6,000,000</span>
                     </div>
-                    <div class="w-full bg-gray-700 rounded-full h-8 shadow-inner">
-                        <div id="donations-bar" class="bg-campaign-fuchsia h-8 rounded-full text-center text-white font-bold flex items-center justify-center transition-all duration-1000 ease-out" style="width: 0%;">
-                            <span id="donations-percentage" class="opacity-0 transition-opacity duration-500">0%</span>
+                    <div class="w-full bg-white/10 h-8 rounded-full overflow-hidden shadow-inner">
+                        <div id="donations-bar" class="bg-[var(--campaign-fuchsia)] h-8 flex items-center justify-center text-white text-sm font-bold transition-all duration-1000 ease-out" style="width:0%;">
+                            <span id="donations-percentage" class="opacity-0 transition-opacity duration-700">0%</span>
                         </div>
                     </div>
                 </div>
 
-                <a href="#" class="mt-12 inline-block bg-white text-campaign-purple font-bold text-xl uppercase px-12 py-4 rounded-full shadow-lg hover:bg-campaign-fuchsia hover:text-white transition-all duration-300 transform hover:scale-105">
-                    <!--! CAMBIAR AQUÍ: Pon el link a tu plataforma de donación (Vaki, etc.) -->
+                <button id="open-modal-btn" class="mt-12 inline-block bg-white text-[var(--campaign-purple)] font-bold text-xl uppercase px-12 py-4 rounded-full shadow-lg hover:bg-[var(--campaign-fuchsia)] hover:text-white transition-all duration-300 transform hover:scale-105">
                     ¡Aporto al cambio ahora!
-                </a>
+                </button>
             </div>
         </section>
+
+        <footer class="bg-gray-900 py-16 text-center text-white">
+            <h3 class="text-2xl font-bold uppercase">Este 26 de Octubre, VOTA ASÍ:</h3>
+            <div class="max-w-md mx-auto mt-8 bg-white text-gray-900 rounded-2xl shadow-2xl p-6">
+                <p class="font-semibold text-lg">Cámara Antioquia</p>
+                <div class="mt-4 text-left space-y-3">
+                    <div class="flex items-center gap-3">
+                        <span class="bg-[var(--campaign-purple)] text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">1</span>
+                        <p>Marca el logo del <span class="text-[var(--campaign-fuchsia)] font-bold">Pacto Histórico</span>.</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="bg-[var(--campaign-purple)] text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">2</span>
+                        <p>Escribe el número <span class="text-[var(--campaign-fuchsia)] text-2xl font-bold">20</span>.</p>
+                    </div>
+                </div>
+                <img src="https://i.imgur.com/u7qg0A4.png" alt="Logo Pacto Histórico 20" class="mx-auto mt-6 h-16">
+            </div>
+
+            <div class="mt-10 flex justify-center gap-6 text-3xl">
+                <a href="https://www.facebook.com/DoraSaldarriagaG" target="_blank" class="text-gray-400 hover:text-[var(--campaign-fuchsia)]"><i class="fab fa-facebook-square"></i></a>
+                <a href="https://www.instagram.com/dora_saldarriagag/" target="_blank" class="text-gray-400 hover:text-[var(--campaign-fuchsia)]"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@dorasaldarriagag?_t=ZS-90Nt4PWsGo6&_r=1" target="_blank" class="text-gray-400 hover:text-[var(--campaign-fuchsia)]"><i class="fab fa-tiktok"></i></a>
+                <a href="https://chat.whatsapp.com/JQDgOTw9Kwc5atj5Et7ujz?mode=wwc-" target="_blank" class="text-gray-400 hover:text-[var(--campaign-fuchsia)]"><i class="fab fa-whatsapp-square"></i></a>
+            </div>
+
+            <p class="mt-8 text-lg font-semibold text-[var(--campaign-fuchsia)]">#PonteLa20PorLasMujeres #DoraALaCámara</p>
+        </footer>
     </main>
 
     <!-- ======================== -->
-    <!-- FOOTER CON TARJETA DE VOTO -->
+    <!-- BOTÓN FLOTANTE VOLUNTARIOS -->
     <!-- ======================== -->
-    <footer class="bg-gray-900 py-16">
-        <div class="container mx-auto px-6 text-center">
-            <h3 class="text-2xl font-bold uppercase">Este 26 de Octubre, VOTA ASÍ:</h3>
-            
-            <!-- Tarjeta de voto modernizada -->
-            <div class="max-w-md mx-auto mt-8 bg-white text-gray-800 rounded-2xl shadow-2xl p-6 transform hover:scale-105 transition-transform duration-300">
-                <p class="font-semibold text-lg">Cámara Antioquia</p>
-                <p class="text-gray-600 mt-2">Sigue estos dos pasos:</p>
-                <div class="mt-4 text-left space-y-3">
-                    <div class="flex items-center gap-4">
-                        <span class="flex-shrink-0 bg-campaign-purple text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg">1</span>
-                        <p class="font-semibold">Marca el logo del <span class="text-campaign-fuchsia">PACTO HISTÓRICO</span>.</p>
-                    </div>
-                     <div class="flex items-center gap-4">
-                        <span class="flex-shrink-0 bg-campaign-purple text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg">2</span>
-                        <p class="font-semibold">Escribe el número <span class="text-campaign-fuchsia text-2xl">20</span>.</p>
-                    </div>
-                </div>
-                <img src="https://i.imgur.com/u7qg0A4.png" alt="Logo Pacto Histórico con el número 20" class="mx-auto mt-6 h-16"> <!-- Usando una URL de la imagen del logo por conveniencia -->
-            </div>
-            
-            <div class="mt-12">
-                <div class="flex justify-center items-center space-x-6">
-                    <!--! CAMBIAR AQUÍ: Pon los links a tus redes sociales -->
-                    <a href="#" target="_blank" aria-label="Facebook" class="text-4xl text-gray-400 hover:text-campaign-fuchsia transition-colors duration-300"><i class="fab fa-facebook-square"></i></a>
-                    <a href="#" target="_blank" aria-label="Instagram" class="text-4xl text-gray-400 hover:text-campaign-fuchsia transition-colors duration-300"><i class="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank" aria-label="Twitter" class="text-4xl text-gray-400 hover:text-campaign-fuchsia transition-colors duration-300"><i class="fab fa-twitter-square"></i></a>
-                    <a href="#" target="_blank" aria-label="WhatsApp" class="text-4xl text-gray-400 hover:text-campaign-fuchsia transition-colors duration-300"><i class="fab fa-whatsapp-square"></i></a>
-                </div>
-            </div>
-            
-            <p class="mt-8 text-lg font-bold text-campaign-fuchsia tracking-widest">#PonteLa20PorLasMujeres #DoraALaCámara</p> <!-- AJUSTE: Color cambiado para mayor visibilidad -->
-        </div>
-    </footer>
+    <a href="https://chat.whatsapp.com/IsHoeheGJfzDoWsvPeXVsH?mode=wwc" target="_blank" class="fixed right-4 top-1/2 -translate-y-1/2 z-50 bg-[var(--campaign-fuchsia)] text-white px-4 py-3 rounded-full shadow-lg flex items-center gap-3 hover:bg-white hover:text-[var(--campaign-fuchsia)] transition-all duration-300 transform hover:scale-105">
+        <i class="fa-solid fa-hands-holding-circle text-2xl"></i>
+        <span class="font-bold hidden md:inline">Ser Voluntaria/o</span>
+    </a>
 
     <!-- ======================== -->
-    <!-- SCRIPT PARA EL CONTADOR -->
+    <!-- MODAL DE DONACIONES -->
     <!-- ======================== -->
+    <div id="donation-modal" class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 hidden">
+        <div class="bg-[var(--campaign-dark)] border-2 border-[var(--campaign-fuchsia)] text-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center relative modal-content">
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-2xl text-gray-400 hover:text-white">&times;</button>
+            <h3 class="text-2xl font-bold uppercase mb-6">¡Gracias por tu apoyo!</h3>
+            <div class="space-y-4 text-lg text-left bg-white/10 p-6 rounded-lg">
+                <p><strong>📲 NEQUI:</strong> 3004379695</p>
+                <p><strong>🏦 CTA AHORROS BANCOLOMBIA:</strong> 553-551793-53</p>
+            </div>
+            <p class="mt-6 text-gray-300">Tu aporte es el motor de este cambio.</p>
+        </div>
+    </div>
+
+
     <script>
         const countdown = () => {
-            const targetDate = new Date('October 26, 2025 08:00:00').getTime(); // 8 AM para el inicio de la votación
+            const targetDate = new Date('October 26, 2025 08:00:00').getTime();
             const now = new Date().getTime();
             const distance = targetDate - now;
 
             if (distance < 0) {
-                document.getElementById('urgencia').innerHTML = '<div class="container mx-auto px-6 text-center"><h2 class="text-4xl md:text-6xl font-black uppercase text-white">¡LLEGÓ EL DÍA DE HACER HISTORIA!</h2></div>';
-                clearInterval(interval);
+                clearInterval(countdownInterval);
+                document.getElementById('urgencia').innerHTML = '<div class="container mx-auto px-6"><h3 class="text-5xl font-extrabold uppercase my-6 text-[var(--campaign-light)] drop-shadow">¡ES HOY, A VOTAR!</h3></div>';
                 return;
             }
 
@@ -224,42 +206,53 @@
             document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
         };
 
-        // Donations Bar Animation
         const animateDonations = () => {
-            const donationsBar = document.getElementById('donations-bar');
-            const donationsPercentageText = document.getElementById('donations-percentage');
-            const currentDonationsText = document.getElementById('current-donations');
-            
-            // --- ¡CAMBIAR AQUÍ! ---
-            // Estos son los valores para la barra de progreso. 
-            // Actualízalos para que la barra refleje el estado real de las donaciones.
-            const meta = 50000000; // 50 millones
-            const recaudado = 15700000; // 15.7 millones
-            // --- Fin de la sección para cambiar ---
+            const meta = 6000000;
+            const recaudado = 350000;
 
-            const targetPercentage = Math.round((recaudado / meta) * 100);
+            const percentage = Math.round((recaudado / meta) * 100);
 
-            // Formatear los números como moneda colombiana
-            currentDonationsText.innerText = `$${recaudado.toLocaleString('es-CO')}`;
-            
-            // Animar la barra
+            const bar = document.getElementById('donations-bar');
+            const text = document.getElementById('donations-percentage');
+            const current = document.getElementById('current-donations');
+
+            current.innerText = `$${recaudado.toLocaleString('es-CO')}`;
+
             setTimeout(() => {
-                donationsBar.style.width = `${targetPercentage}%`;
-                donationsPercentageText.innerText = `${targetPercentage}%`;
-                // Hacer visible el porcentaje después de que la barra comience a moverse
-                setTimeout(() => {
-                    donationsPercentageText.classList.remove('opacity-0');
-                }, 500);
-            }, 500); // Pequeño retraso para que la animación sea visible al cargar
+                bar.style.width = `${percentage}%`;
+                text.innerText = `${percentage}%`;
+                if (percentage > 10) {
+                    text.classList.remove('opacity-0');
+                }
+            }, 400);
         };
+
+        // Modal Logic
+        const openModalBtn = document.getElementById('open-modal-btn');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const donationModal = document.getElementById('donation-modal');
+
+        openModalBtn.addEventListener('click', () => {
+            donationModal.classList.remove('hidden');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            donationModal.classList.add('hidden');
+        });
+
+        // Close modal if clicking outside the content
+        donationModal.addEventListener('click', (e) => {
+            if (e.target === donationModal) {
+                donationModal.classList.add('hidden');
+            }
+        });
+
+        const countdownInterval = setInterval(countdown, 1000);
         
-        const interval = setInterval(countdown, 1000); // Actualiza cada segundo
-        
-        // Ejecutar funciones al cargar la página
+        // Run functions on page load
         countdown();
         animateDonations();
     </script>
-
 </body>
 </html>
 
