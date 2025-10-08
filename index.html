@@ -241,11 +241,12 @@
             <button id="close-donation-modal-btn" class="absolute top-4 right-4 text-2xl text-gray-400 hover:text-white">&times;</button>
             <h3 class="text-2xl font-bold uppercase mb-6">¡Gracias por tu apoyo!</h3>
             <div class="space-y-4 text-lg text-left bg-white/10 p-6 rounded-lg">
+                <!-- La información de Nequi está comentada para ocultarla de la vista, pero sigue en el código. -->
+                <!--
                 <p>
-                    <a href="https://clientes.nequi.com.co/recargas" target="_blank" class="hover:text-[var(--campaign-accent)] transition-colors">
-                        <strong>📲 NEQUI:</strong> 3004379695
-                    </a>
+                    <strong>📲 NEQUI:</strong> 3004379695
                 </p>
+                -->
                 <p><strong>🏦 CTA AHORROS BANCOLOMBIA:</strong> 553-551793-53</p>
             </div>
             <p class="mt-6 text-gray-300">Tu aporte es el motor de este cambio.</p>
@@ -275,8 +276,6 @@
     <!-- Objetivo: Darle interactividad a la página (contador, modal, etc.)  -->
     <!-- =================================================================== -->
     <script>
-        // Espera a que todo el contenido HTML de la página se haya cargado antes de ejecutar el script.
-        // Es una buena práctica para evitar errores si el script intenta manipular elementos que aún no existen.
         document.addEventListener('DOMContentLoaded', () => {
 
             /*****************************************************************************************
@@ -299,7 +298,6 @@
 
 
             // --- LÓGICA DEL CONTADOR REGRESIVO ---
-            // Esta función calcula y muestra el tiempo restante hasta el día de las elecciones.
             const countdown = () => {
                 const targetDate = new Date(campaignConfig.fechaElecciones).getTime();
                 const now = new Date().getTime();
@@ -314,13 +312,11 @@
                     return;
                 }
 
-                // Cálculos para obtener días, horas, minutos y segundos.
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                // Actualiza los elementos en el HTML. El padStart(2, '0') asegura que siempre haya dos dígitos (ej. 09).
                 document.getElementById('days').innerText = String(days).padStart(2, '0');
                 document.getElementById('hours').innerText = String(hours).padStart(2, '0');
                 document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
@@ -328,18 +324,13 @@
             };
 
             // --- LÓGICA DE LA BARRA DE PROGRESO DE DONACIONES ---
-            // Anima la barra de progreso de las donaciones y actualiza los textos.
             const animateDonations = () => {
                 const percentage = Math.round((campaignConfig.recaudado / campaignConfig.metaDonaciones) * 100);
-                
-                // Formatear números para que se vean bien (ej. 6,000,000)
                 document.getElementById('donation-goal-text').innerText = `Meta: $${campaignConfig.metaDonaciones.toLocaleString('es-CO')}`;
                 document.getElementById('current-donations').innerText = `$${campaignConfig.recaudado.toLocaleString('es-CO')}`;
-
                 const bar = document.getElementById('donations-bar');
                 const text = document.getElementById('donations-percentage');
 
-                // Anima el ancho de la barra y muestra el porcentaje.
                 setTimeout(() => {
                     if(bar) bar.style.width = `${percentage}%`;
                     if(text) {
@@ -348,19 +339,16 @@
                     }
                 }, 400);
             };
-
+            
             // --- LÓGICA DEL MAPA DE CALOR DE VOTOS ---
-            // Genera y anima el mosaico de votos.
             const animateVoteCounter = () => {
                 const voteCountElement = document.getElementById('vote-count');
                 const gridContainer = document.getElementById('vote-grid');
                 const voteGoalText = document.getElementById('vote-goal-text');
-                const totalSquares = 200; // Número de cuadritos en el mosaico (20x10)
+                const totalSquares = 200; 
 
-                // Actualiza el texto de la meta
                 voteGoalText.innerText = campaignConfig.metaVotos.toLocaleString('es-CO');
 
-                // 1. Generar el mosaico de cuadritos grises.
                 gridContainer.innerHTML = ''; 
                 for (let i = 0; i < totalSquares; i++) {
                     const square = document.createElement('div');
@@ -368,11 +356,9 @@
                     gridContainer.appendChild(square);
                 }
 
-                // 2. Calcular cuántos cuadritos se deben colorear.
                 const squares = gridContainer.children;
                 const filledSquares = Math.round((campaignConfig.votosActuales / campaignConfig.metaVotos) * totalSquares);
 
-                // 3. Animar el llenado del mosaico con efecto de mapa de calor.
                 let i = 0;
                 const fillInterval = setInterval(() => {
                     if (i >= filledSquares) {
@@ -382,22 +368,19 @@
                     squares[i].classList.remove('bg-gray-300');
                     const percentage = (i / totalSquares) * 100;
                     
-                    // Cambia de color según el progreso
                     if (percentage < 33) {
-                        squares[i].style.backgroundColor = 'var(--campaign-accent)'; // Teal (Frío)
+                        squares[i].style.backgroundColor = 'var(--campaign-accent)';
                     } else if (percentage < 66) {
-                        squares[i].style.backgroundColor = 'var(--campaign-purple)'; // Morado (Tibio)
+                        squares[i].style.backgroundColor = 'var(--campaign-purple)';
                     } else {
-                        squares[i].style.backgroundColor = 'var(--campaign-fuchsia)'; // Fucsia (Caliente)
+                        squares[i].style.backgroundColor = 'var(--campaign-fuchsia)';
                     }
                     i++;
-                }, 10); // Velocidad de llenado. Un número más bajo es más rápido.
+                }, 10);
 
-                // 4. Animar el conteo del número de votos.
                 let currentCount = 0;
-                const duration = 1500; // Duración de la animación en milisegundos
+                const duration = 1500;
                 const timer = setInterval(() => {
-                    // El incremento se calcula para que la animación sea fluida.
                     currentCount += Math.ceil(campaignConfig.votosActuales / (duration / 10)); 
                     if (currentCount >= campaignConfig.votosActuales) {
                         currentCount = campaignConfig.votosActuales;
@@ -408,7 +391,6 @@
             };
 
             // --- LÓGICA GENERAL DE MODALES (POPUPS) ---
-            // Función reutilizable para abrir y cerrar cualquier modal.
             const setupModal = (openBtnId, closeBtnId, modalId) => {
                 const openBtn = document.getElementById(openBtnId);
                 const closeBtn = document.getElementById(closeBtnId);
@@ -418,21 +400,17 @@
                 if (closeBtn && modal) closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
                 if (modal) {
                     modal.addEventListener('click', (e) => {
-                        // Cierra el modal si se hace clic en el fondo oscuro.
                         if (e.target === modal) modal.classList.add('hidden');
                     });
                 }
             };
 
             // --- INICIALIZACIÓN DE TODAS LAS FUNCIONALIDADES ---
-            // Configura los dos modales de la página.
             setupModal('open-modal-btn', 'close-donation-modal-btn', 'donation-modal');
             setupModal('open-voting-modal-btn', 'close-voting-modal-btn', 'voting-modal');
             
-            // Inicia el intervalo para que el contador de tiempo se actualice cada segundo.
             const countdownInterval = setInterval(countdown, 1000);
             
-            // Llama a todas las funciones una vez al cargar la página para mostrar los datos inmediatamente.
             countdown();
             animateDonations();
             animateVoteCounter();
